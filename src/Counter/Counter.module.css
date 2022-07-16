@@ -27,10 +27,8 @@
     background-color: darkcyan;
 }
 
-.buttonReset {
-   color: red
-}
 
 .buttonReset {
     cursor: pointer;
+    color: red
 }
