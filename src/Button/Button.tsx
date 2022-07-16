@@ -1,10 +1,14 @@
 import React from 'react';
+import s from './Button.module.css'
 
-export const Counter = () => {
-    return (
-        <div>
+type ButtonTypeProps = {
+    //свои пропсы
+} & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
-        </div>
+
+export const Button: React.FC<ButtonTypeProps> = ({className,...rest}) => {
+       return (
+            <button className={`${s.button} ${className}`} {...rest}></button>
     );
 };
 
