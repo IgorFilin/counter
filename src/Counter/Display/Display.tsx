@@ -9,6 +9,8 @@ type DisplayTypeProps = {
     changeMinValue?: (e: number) => void
     minValue?: number
     maxValue?: number
+    error?: boolean
+
 }
 
 
@@ -19,7 +21,9 @@ export const Display: React.FC<DisplayTypeProps> = ({
                                                         changeMinValue,
                                                         count,
                                                         isMaxValueError,
-                                                        input
+                                                        input,
+                                                        error
+
                                                     }) => {
     const onChangeHandlerMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         changeMaxValue && changeMaxValue(Number(e.currentTarget.value))
@@ -30,8 +34,9 @@ export const Display: React.FC<DisplayTypeProps> = ({
 
     }
 
-
+    console.log(error)
     return (
+
         <div className={isMaxValueError ? s.error : s.display}>
             {input && <div className={s.conteiner}>
                 <div className={s.valueDisplay}>
@@ -42,11 +47,9 @@ export const Display: React.FC<DisplayTypeProps> = ({
                     <div>start value:</div>
                     <div><input onChange={onChangeHandlerMinValue} value={minValue} type="number"/></div>
                 </div>
-
-
             </div>}
-            {count && count}
-
+            {!error && count}
+            {error && <div className={s.errorSet}>enter values and press 'set'</div>}
         </div>
     );
 };

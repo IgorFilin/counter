@@ -7,8 +7,8 @@ import {SettingsBlock} from "./SettingsBlock/SettingsBlock";
 function App() {
     const [minValue, setMinValue] = useState(0)
     const [maxValue, setMaxValue] = useState(5)
-    console.log(maxValue)
     const [count, setCount] = useState<number>(minValue)
+    const [error, setError] = useState(false)
     const isMaxValueError = count === maxValue
     const isMinValueError = count === minValue
 
@@ -21,25 +21,38 @@ function App() {
     }
     const changeMaxValue = (e: number) => {
         setMaxValue(e)
+        setError(true)
+
+
     }
     const changeMinValue = (e: number) => {
         setMinValue(e)
+        setError(true)
+    }
+    const setChangesValue = () => {
+        localStorage.setItem('maxValues', JSON.stringify(maxValue))
+        localStorage.setItem('minValues', JSON.stringify(minValue))
+        setCount(minValue)
+        setError(false)
     }
 
 
     return (
         <div className="App">
             <SettingsBlock
+                setChangesValue={setChangesValue}
                 minValue={minValue}
                 maxValue={maxValue}
                 changeMaxValue={changeMaxValue}
                 changeMinValue={changeMinValue}
             />
-            <Counter count={count}
-                     addCount={addCount}
-                     resetCount={resetCount}
-                     isMaxValueError={isMaxValueError}
-                     isMinValueError={isMinValueError}
+            <Counter
+                error={error}
+                count={count}
+                addCount={addCount}
+                resetCount={resetCount}
+                isMaxValueError={isMaxValueError}
+                isMinValueError={isMinValueError}
             />
         </div>
     );
