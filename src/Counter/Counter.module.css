@@ -13,7 +13,7 @@
     border: var(--primary-color) solid 2px;
     border-radius: 20px;
     background-color: dimgray;
-    gap: 20px;
+    row-gap: 60px;
 }
 
 .buttons {
@@ -21,8 +21,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 15px;
-    gap: 20px;
-    height: 150px;
+    gap: 80px;
+    height: 100px;
     border: 2px solid var(--primary-color);
     background-color: darkcyan;
 }

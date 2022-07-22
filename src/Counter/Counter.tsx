@@ -4,7 +4,7 @@ import {Button} from "../Button/Button";
 import s from './Counter.module.css'
 
 type CounterTypeProps = {
-    count: number
+    count?: number
     addCount: () => void
     resetCount: () => void
     isMaxValueError: boolean
