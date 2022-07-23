@@ -11,7 +11,7 @@ function App() {
     const [error, setError] = useState(false)
     const isMaxValueError = count === maxValue
     const isMinValueError = count === minValue
-
+    const inputNumberError = minValue < 0 || maxValue < 0 || minValue === maxValue || maxValue < minValue
     const addCount = () => {
         setCount(count + 1)
     }
@@ -40,6 +40,8 @@ function App() {
     return (
         <div className="App">
             <SettingsBlock
+                inputNumberError={inputNumberError}
+                error={error}
                 setChangesValue={setChangesValue}
                 minValue={minValue}
                 maxValue={maxValue}
@@ -47,6 +49,7 @@ function App() {
                 changeMinValue={changeMinValue}
             />
             <Counter
+                inputNumberError={inputNumberError}
                 error={error}
                 count={count}
                 addCount={addCount}

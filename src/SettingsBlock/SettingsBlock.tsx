@@ -10,7 +10,8 @@ type SettingsBlockTypeProps = {
     changeMaxValue: (e: number) => void
     changeMinValue: (e: number) => void
     setChangesValue: () => void
-
+    error: boolean
+    inputNumberError: boolean
 }
 
 export const SettingsBlock = (props: SettingsBlockTypeProps) => {
@@ -18,6 +19,7 @@ export const SettingsBlock = (props: SettingsBlockTypeProps) => {
         <div className={s.container}>
             <div className={s.content}>
                 <Display
+                    inputNumberError={props.inputNumberError}
                     error={false}
                     input
                     minValue={props.minValue}
@@ -26,7 +28,8 @@ export const SettingsBlock = (props: SettingsBlockTypeProps) => {
                     changeMinValue={props.changeMinValue}
                 />
                 <div className={s.buttons}>
-                    <Button onClick={props.setChangesValue} disabled={false}>set</Button>
+                    <Button onClick={props.setChangesValue}
+                            disabled={!props.error || props.inputNumberError}>set</Button>
 
                 </div>
             </div>

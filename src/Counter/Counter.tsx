@@ -10,6 +10,7 @@ type CounterTypeProps = {
     isMaxValueError: boolean
     isMinValueError: boolean
     error: boolean
+    inputNumberError: boolean
 }
 
 export const Counter: React.FC<CounterTypeProps> = ({
@@ -18,17 +19,20 @@ export const Counter: React.FC<CounterTypeProps> = ({
                                                         resetCount,
                                                         isMaxValueError,
                                                         isMinValueError,
-                                                        error
+                                                        error,
+                                                        inputNumberError
                                                     }) => {
 
 
     return (
         <div className={s.container}>
             <div className={s.content}>
-                <Display error={error} count={count} isMaxValueError={isMaxValueError}/>
+                <Display error={error} count={count} isMaxValueError={isMaxValueError}
+                         inputNumberError={inputNumberError}/>
                 <div className={s.buttons}>
-                    <Button onClick={addCount} disabled={isMaxValueError}>inc</Button>
-                    <Button className={s.buttonReset} onClick={resetCount} disabled={isMinValueError}>res</Button>
+                    <Button onClick={addCount} disabled={isMaxValueError || error}>inc</Button>
+                    <Button className={s.buttonReset} onClick={resetCount}
+                            disabled={isMinValueError || error}>res</Button>
                 </div>
             </div>
         </div>

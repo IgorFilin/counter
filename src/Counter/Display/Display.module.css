@@ -35,15 +35,35 @@
     gap: 20px;
 }
 
-input {
+.inputs {
+    margin-top: 10px;
+    margin-left: 5px;
     font-size: 30px;
     width: 150px;
     height: 30px;
     border-radius: 4px;
-    border: solid 3px blueviolet;
+    border: solid 4px blueviolet;
 }
 
 .errorSet {
     font-size: 25px;
     color: red;
+}
+
+.textSettings {
+    font-size: 35px;
+}
+
+.inputErrors {
+    margin-top: 10px;
+    margin-left: 5px;
+    font-size: 30px;
+    width: 150px;
+    height: 30px;
+    border-radius: 4px;
+    border: solid 4px red;
+}
+
+input:focus {
+    outline: none;
 }

@@ -10,6 +10,7 @@ type DisplayTypeProps = {
     minValue?: number
     maxValue?: number
     error?: boolean
+    inputNumberError?: boolean
 
 }
 
@@ -22,7 +23,8 @@ export const Display: React.FC<DisplayTypeProps> = ({
                                                         count,
                                                         isMaxValueError,
                                                         input,
-                                                        error
+                                                        error,
+                                                        inputNumberError
 
                                                     }) => {
     const onChangeHandlerMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,16 +42,19 @@ export const Display: React.FC<DisplayTypeProps> = ({
         <div className={isMaxValueError ? s.error : s.display}>
             {input && <div className={s.conteiner}>
                 <div className={s.valueDisplay}>
-                    <div>max value:</div>
-                    <div><input onChange={onChangeHandlerMaxValue} value={maxValue} type="number"/></div>
+                    <div className={s.textSettings}>max value:</div>
+                    <div><input className={inputNumberError ? s.inputErrors : s.inputs}
+                                onChange={onChangeHandlerMaxValue} value={maxValue} type="number"/></div>
                 </div>
                 <div className={s.valueDisplay}>
-                    <div>start value:</div>
-                    <div><input onChange={onChangeHandlerMinValue} value={minValue} type="number"/></div>
+                    <div className={s.textSettings}>start value:</div>
+                    <div><input className={inputNumberError ? s.inputErrors : s.inputs}
+                                onChange={onChangeHandlerMinValue} value={minValue} type="number"/></div>
                 </div>
             </div>}
-            {!error && count}
-            {error && <div className={s.errorSet}>enter values and press 'set'</div>}
+            {!error && !inputNumberError && count}
+            {error && !inputNumberError && <div className={s.errorSet}>enter values and press 'set'</div>}
+            {inputNumberError && !input && <div className={s.errorSet}>Incorrect value</div>}
         </div>
     );
 };
