@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./Counter/Counter";
 import {SettingsBlock} from "./SettingsBlock/SettingsBlock";
@@ -12,6 +12,19 @@ function App() {
     const isMaxValueError = count === maxValue
     const isMinValueError = count === minValue
     const inputNumberError = minValue < 0 || maxValue < 0 || minValue === maxValue || maxValue < minValue
+
+    useEffect(() => getLocalStorage(), [])
+
+    const getLocalStorage = () => {
+        const newMaxValue = localStorage.getItem('maxValues')
+        const newMinValue = localStorage.getItem('minValues')
+        if (newMaxValue) {
+            setMaxValue(JSON.parse(newMaxValue))
+        }
+        if (newMinValue) {
+            setMinValue((JSON.parse(newMinValue)))
+        }
+    }
     const addCount = () => {
         setCount(count + 1)
     }
