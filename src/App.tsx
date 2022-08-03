@@ -23,6 +23,7 @@ function App() {
         }
         if (newMinValue) {
             setMinValue((JSON.parse(newMinValue)))
+            setCount((JSON.parse(newMinValue)))
         }
     }
     const addCount = () => {

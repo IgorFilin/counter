@@ -36,7 +36,7 @@ export const Display: React.FC<DisplayTypeProps> = ({
 
     }
 
-    console.log(error)
+    
     return (
 
         <div className={isMaxValueError ? s.error : s.display}>
