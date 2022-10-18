@@ -8,7 +8,7 @@ function App() {
     const [minValue, setMinValue] = useState(0)
     const [maxValue, setMaxValue] = useState(5)
     const [count, setCount] = useState<number>(minValue)
-    const [error, setError] = useState(false)
+    const [enterValueAlert, setEnterValueAlert] = useState(false)
     const isMaxValueError = count === maxValue
     const isMinValueError = count === minValue
     const inputNumberError = minValue < 0 || maxValue < 0 || minValue === maxValue || maxValue < minValue
@@ -35,42 +35,44 @@ function App() {
     }
     const changeMaxValue = (e: number) => {
         setMaxValue(e)
-        setError(true)
+        setEnterValueAlert(true)
 
 
     }
     const changeMinValue = (e: number) => {
         setMinValue(e)
-        setError(true)
+        setEnterValueAlert(true)
     }
     const setChangesValue = () => {
         localStorage.setItem('maxValues', JSON.stringify(maxValue))
         localStorage.setItem('minValues', JSON.stringify(minValue))
         setCount(minValue)
-        setError(false)
+        setEnterValueAlert(false)
     }
 
 
     return (
         <div className="App">
-            <SettingsBlock
-                inputNumberError={inputNumberError}
-                error={error}
-                setChangesValue={setChangesValue}
-                minValue={minValue}
-                maxValue={maxValue}
-                changeMaxValue={changeMaxValue}
-                changeMinValue={changeMinValue}
-            />
-            <Counter
-                inputNumberError={inputNumberError}
-                error={error}
-                count={count}
-                addCount={addCount}
-                resetCount={resetCount}
-                isMaxValueError={isMaxValueError}
-                isMinValueError={isMinValueError}
-            />
+            <div className='contentMainBlock'>
+                <SettingsBlock
+                    inputNumberError={inputNumberError}
+                    enterValueAlert={enterValueAlert}
+                    setChangesValue={setChangesValue}
+                    minValue={minValue}
+                    maxValue={maxValue}
+                    changeMaxValue={changeMaxValue}
+                    changeMinValue={changeMinValue}
+                />
+                <Counter
+                    inputNumberError={inputNumberError}
+                    enterValueAlert={enterValueAlert}
+                    count={count}
+                    addCount={addCount}
+                    resetCount={resetCount}
+                    isMaxValueError={isMaxValueError}
+                    isMinValueError={isMinValueError}
+                />
+            </div>
         </div>
     );
 }

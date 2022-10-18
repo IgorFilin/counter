@@ -9,7 +9,7 @@ type DisplayTypeProps = {
     changeMinValue?: (e: number) => void
     minValue?: number
     maxValue?: number
-    error?: boolean
+    enterValuesAlert?: boolean
     inputNumberError?: boolean
 
 }
@@ -23,7 +23,7 @@ export const Display: React.FC<DisplayTypeProps> = ({
                                                         count,
                                                         isMaxValueError,
                                                         input,
-                                                        error,
+                                                        enterValuesAlert,
                                                         inputNumberError
 
                                                     }) => {
@@ -36,24 +36,28 @@ export const Display: React.FC<DisplayTypeProps> = ({
 
     }
 
-    
+
     return (
 
         <div className={isMaxValueError ? s.error : s.display}>
             {input && <div className={s.conteiner}>
                 <div className={s.valueDisplay}>
                     <div className={s.textSettings}>max value:</div>
-                    <div><input className={inputNumberError ? s.inputErrors : s.inputs}
-                                onChange={onChangeHandlerMaxValue} value={maxValue} type="number"/></div>
+
+                    <input className={inputNumberError ? s.inputErrors : s.inputs}
+                           onChange={onChangeHandlerMaxValue} value={maxValue} type="number"/>
+
                 </div>
                 <div className={s.valueDisplay}>
                     <div className={s.textSettings}>start value:</div>
-                    <div><input className={inputNumberError ? s.inputErrors : s.inputs}
-                                onChange={onChangeHandlerMinValue} value={minValue} type="number"/></div>
+
+                    <input className={inputNumberError ? s.inputErrors : s.inputs}
+                           onChange={onChangeHandlerMinValue} value={minValue} type="number"/>
+
                 </div>
             </div>}
-            {!error && !inputNumberError && count}
-            {error && !inputNumberError && <div className={s.errorSet}>enter values and press 'set'</div>}
+            {!enterValuesAlert && !inputNumberError && count}
+            {enterValuesAlert && !inputNumberError && <div className={s.errorSet}>enter values and press 'set'</div>}
             {inputNumberError && !input && <div className={s.errorSet}>Incorrect value</div>}
         </div>
     );

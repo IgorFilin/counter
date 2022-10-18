@@ -21,7 +21,7 @@
     color: red;
 }
 
-.conteiner {
+.container {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -52,6 +52,12 @@
 
 .textSettings {
     font-size: 35px;
+}
+
+@media screen and (max-width: 500px) {
+    .textSettings {
+        font-size: 25px;
+    }
 }
 
 .inputErrors {

@@ -1,7 +1,8 @@
 .container {
-    display: grid;
-    place-items: center;
-    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
 }
 
 .content {
@@ -14,6 +15,14 @@
     border-radius: 20px;
     background-color: dimgray;
     row-gap: 60px;
+
+}
+
+@media screen and (max-width: 500px) {
+    .content {
+        width: 70%;
+        height: 40%;
+    }
 }
 
 .buttons {
