@@ -13,6 +13,7 @@ function App() {
     const isMinValueError = count === minValue
     const inputNumberError = minValue < 0 || maxValue < 0 || minValue === maxValue || maxValue < minValue
 
+
     useEffect(() => getLocalStorage(), [])
 
     const getLocalStorage = () => {
